@@ -61,8 +61,10 @@ input{
 			<input type="text" class="myError" value="${Err}" />
 			<form action="/Student_Debate/student/save" method="post">
 				<input type="hidden" name="studId" value="${student.studId}" size="30" style="height:20px"/><br>
-				<label for="studName">Student Name:</label> 
-				<input type="text" name="studName" value="${student.studName}" size="30" style="height:20px"/><br>
+				<label for="studName">Student First Name:</label> 
+				<input type="text" name="studFirstName" value="${student.studFirstName}" size="30" style="height:20px"/><br>
+				<label for="studName">Student Last Name:</label> 
+				<input type="text" name="studLastName" value="${student.studLastName}" size="30" style="height:20px"/><br>
 				<label for="studDept">Student Department:</label>
 				<input type="text" name="studDept" value="${student.studDept}" size="30" style="height:20px"/><br>
 				<label for="studCountry">Student Country:</label>

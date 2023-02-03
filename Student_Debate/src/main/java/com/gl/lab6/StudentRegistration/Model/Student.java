@@ -16,7 +16,8 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int studId;
-	public String studName;
+	public String studFirstName;
+	public String studLastName;
 	public String studDept;
 	public String studCountry;
 	
@@ -24,53 +25,64 @@ public class Student {
 		
 	}
 	
-	public Student(String studName, String studDept, String studCountry) {
+	public Student(String studFirstName,String studLastName, String studDept, String studCountry) {
 		super();
-		this.studName = studName;
+		this.studFirstName = studFirstName;
+		this.studLastName = studLastName;
 		this.studDept = studDept;
 		this.studCountry = studCountry;
 	}
 	
+	@Override
+	public String toString() {
+		return "Student [studId=" + studId + ", studFirstName=" + studFirstName + ", studLastName=" + studLastName
+				+ ", studDept=" + studDept + ", studCountry=" + studCountry + "]";
+	}
+
 	public int getStudId() {
 		return studId;
 	}
-	
+
 	public void setStudId(int studId) {
 		this.studId = studId;
 	}
-	
-	public String getStudName() {
-		return studName;
+
+	public String getStudFirstName() {
+		return studFirstName;
 	}
-	
-	public void setStudName(String studName) {
-		this.studName = studName;
+
+	public void setStudFirstName(String studFirstName) {
+		this.studFirstName = studFirstName;
 	}
-	
+
+	public String getStudLastName() {
+		return studLastName;
+	}
+
+	public void setStudLastName(String studLastName) {
+		this.studLastName = studLastName;
+	}
+
 	public String getStudDept() {
 		return studDept;
 	}
-	
+
 	public void setStudDept(String studDept) {
 		this.studDept = studDept;
 	}
-	
+
 	public String getStudCountry() {
 		return studCountry;
 	}
-	
+
 	public void setStudCountry(String studCountry) {
 		this.studCountry = studCountry;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [studId=" + studId + ", studName=" + studName + ", studDept=" + studDept + ", studCountry="
-				+ studCountry + "]";
-	}
 	public Student(Student student) {
 		super();
-		this.studName=student.studName;
+		this.studFirstName=student.studFirstName;
+		this.studLastName=student.studLastName;
 		this.studDept=student.studDept;
 		this.studCountry=student.studCountry;
 	}

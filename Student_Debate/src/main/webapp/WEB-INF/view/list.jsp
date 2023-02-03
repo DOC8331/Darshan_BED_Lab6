@@ -80,16 +80,20 @@ input {
 		<table>
 			<tr>
 				<th>ID</th>
-				<th>Name</th>
+				<th>FirstName</th>
+				<th>LastName</th>
 				<th>Department</th>
 				<th>Country</th>
 				<th>Action</th>
 			</tr>
 			<%
 			for (Student student : studList) {
-				out.println("<tr><td>" + student.getStudId() + "</td><td>" + student.getStudName() + "</td><td>"
-				+ student.getStudDept() + "</td><td>" + student.getStudCountry() +
-				"</td><td><a href='/Student_Debate/student/showFormUpdate?studId="
+				out.println("<tr><td>" 
+				+ student.getStudId() + "</td><td>" 
+				+ student.getStudFirstName() + "</td><td>"
+				+ student.getStudLastName() + "</td><td>"
+				+ student.getStudDept() + "</td><td>" 
+				+ student.getStudCountry() +"</td><td><a href='/Student_Debate/student/showFormUpdate?studId="
 				+ student.getStudId() + "'>Update</a> | " + 
 				"<a href='/Student_Debate/student/delete?studId="+ student.getStudId()
 				+ "' onclick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td></tr>");

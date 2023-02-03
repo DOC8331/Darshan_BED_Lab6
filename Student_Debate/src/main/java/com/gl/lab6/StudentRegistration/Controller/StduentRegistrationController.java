@@ -49,7 +49,7 @@ public class StduentRegistrationController {
 		String err = "Student already exists";
 		String errL = "Fields cannot be blank";
 
-		if (thestud.getStudName().isEmpty() || thestud.getStudDept().isEmpty()
+		if (thestud.getStudFirstName().isEmpty() ||thestud.getStudLastName().isEmpty() || thestud.getStudDept().isEmpty()
 				|| thestud.getStudCountry().isEmpty()) {
 			ra.addFlashAttribute("student", thestud);
 			ra.addFlashAttribute("String", errL);
@@ -58,7 +58,8 @@ public class StduentRegistrationController {
 
 		List<Student> listOfStudents = studentService.fetchAllStudent();
 		for (Student stud : listOfStudents) {
-			if (stud.getStudName().equalsIgnoreCase(thestud.getStudName())
+			if (stud.getStudFirstName().equalsIgnoreCase(thestud.getStudFirstName())
+					&& stud.getStudLastName().equalsIgnoreCase(thestud.getStudLastName())
 					&& stud.getStudDept().equalsIgnoreCase(thestud.getStudDept())
 					&& stud.getStudCountry().equalsIgnoreCase(thestud.getStudCountry())) {
 				System.out.println("STUD" + thestud.toString());
@@ -72,7 +73,8 @@ public class StduentRegistrationController {
 	    Student studentTemp=null;   
 		if(thestud.getStudId()!=0) {
 			studentTemp=studentService.fetchStudentById(thestud.getStudId());
-			studentTemp.setStudName(thestud.getStudName());
+			studentTemp.setStudFirstName(thestud.getStudFirstName());
+			studentTemp.setStudLastName(thestud.getStudLastName());
 			studentTemp.setStudDept(thestud.getStudDept());
 			studentTemp.setStudCountry(thestud.getStudCountry());
 			
