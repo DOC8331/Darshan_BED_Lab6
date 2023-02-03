@@ -60,6 +60,7 @@ input{
 		<h2 style="text-align: left; color: black; font-size:1.25em">Save Student</h2>
 			<input type="text" class="myError" value="${Err}" />
 			<form action="/Student_Debate/student/save" method="post">
+				<input type="hidden" name="studId" value="${student.studId}" size="30" style="height:20px"/><br>
 				<label for="studName">Student Name:</label> 
 				<input type="text" name="studName" value="${student.studName}" size="30" style="height:20px"/><br>
 				<label for="studDept">Student Department:</label>

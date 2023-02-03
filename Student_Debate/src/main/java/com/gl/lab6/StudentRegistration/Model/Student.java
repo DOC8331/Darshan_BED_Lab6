@@ -68,4 +68,10 @@ public class Student {
 		return "Student [studId=" + studId + ", studName=" + studName + ", studDept=" + studDept + ", studCountry="
 				+ studCountry + "]";
 	}
+	public Student(Student student) {
+		super();
+		this.studName=student.studName;
+		this.studDept=student.studDept;
+		this.studCountry=student.studCountry;
+	}
 }

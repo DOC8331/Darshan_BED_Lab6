@@ -44,44 +44,57 @@ public class StduentRegistrationController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(@ModelAttribute ("student") Student thestud, ModelMap modelMap, RedirectAttributes ra) {
-		String err = "Record already exists";
+	public String saveStudent(@ModelAttribute("student") Student thestud, ModelMap modelMap, RedirectAttributes ra) {
+
+		String err = "Student already exists";
 		String errL = "Fields cannot be blank";
-		
-		if(thestud.getStudName().isEmpty() || thestud.getStudDept().isEmpty() || thestud.getStudCountry().isEmpty()) {
+
+		if (thestud.getStudName().isEmpty() || thestud.getStudDept().isEmpty()
+				|| thestud.getStudCountry().isEmpty()) {
 			ra.addFlashAttribute("student", thestud);
 			ra.addFlashAttribute("String", errL);
-			return "redirect:addForm"; 
-		}			
-		
-		if (studentService.saveStudent(thestud)!=null) {
-			return "redirect:list"; 
+			return "redirect:/student/addForm";
 		}
-		else {
-			System.out.println("STUD"+thestud.toString());
-			ra.addFlashAttribute("student", thestud);
-			ra.addFlashAttribute("String", err);
-			return "redirect:addForm"; 
-		}				
-	}
-	
-	@RequestMapping("/update")
-	public String update(@ModelAttribute ("student") Student thestudent, ModelMap modelMap) {
-		studentService.updateStudent(thestudent); 
-		return "redirect:list"; 
-	}	 	
+
+		List<Student> listOfStudents = studentService.fetchAllStudent();
+		for (Student stud : listOfStudents) {
+			if (stud.getStudName().equalsIgnoreCase(thestud.getStudName())
+					&& stud.getStudDept().equalsIgnoreCase(thestud.getStudDept())
+					&& stud.getStudCountry().equalsIgnoreCase(thestud.getStudCountry())) {
+				System.out.println("STUD" + thestud.toString());
+				ra.addFlashAttribute("student", thestud);
+				ra.addFlashAttribute("String", err);
+				return "redirect:/student/addForm";
+
+			}
+			
+		}
+	    Student studentTemp=null;   
+		if(thestud.getStudId()!=0) {
+			studentTemp=studentService.fetchStudentById(thestud.getStudId());
+			studentTemp.setStudName(thestud.getStudName());
+			studentTemp.setStudDept(thestud.getStudDept());
+			studentTemp.setStudCountry(thestud.getStudCountry());
+			
+		}
+		else
+			studentTemp=new Student(thestud);
+		studentService.saveStudent(studentTemp);
+		return "redirect:/student/list";
+
+	}	
 	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("studId") int studId, ModelMap modelMap) {
 		studentService.deleteStudentById(studId);	
-		return "redirect:list"; 
+		return "redirect:/student/list"; 
 	}
 	
 	@RequestMapping("/showFormUpdate")
 	public String update(@RequestParam("studId") int studId, ModelMap modelMap) {
 		Student stud = studentService.fetchStudentById(studId);
 		modelMap.addAttribute("student", stud);
-		return "update";
+		return "addForm";
 	}
 	
 	@RequestMapping(value = "/403")
